@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const SimpleHeader = () => {
-  const title = 'テストアプリ';
+  const title = '今日の学食';
   return (
     <>
       <HeaderWrapper>

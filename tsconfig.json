@@ -23,7 +23,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es3",
     "lib": [
       "es2019",
       "dom",
