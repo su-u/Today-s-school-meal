@@ -2,8 +2,9 @@
   "name": "api",
   "scripts": {
     "build": "tsc",
-    "serve": "yarn  run build && firebase serve --only functions",
-    "shell": "yarn  run build && firebase functions:shell",
+    "watch": "yarn run build --watch",
+    "serve": "yarn run build && firebase serve --only functions",
+    "shell": "yarn run build && firebase functions:shell",
     "start": "yarn run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
@@ -13,13 +14,16 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@google-cloud/logging": "^7.1.0",
     "express": "^4.17.1",
     "firebase-admin": "^8.6.0",
     "firebase-functions": "^3.3.0",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "puppeteer": "^2.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.5"
   },
   "devDependencies": {
+    "@types/chardet": "^0.8.0",
+    "@types/selenium-webdriver": "^4.0.6",
     "firebase-functions-test": "^0.1.6",
     "firebase-tools": "^7.12.1",
     "typescript": "^3.2.2"

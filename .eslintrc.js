@@ -53,7 +53,7 @@ module.exports = {
     'unicode-bom': 'warn',
     'max-len': 'warn',
     'prefer-const': 'warn',
-    'arrow-parens': 'error',
+    'arrow-parens': 'warn',
 
     'react/no-multi-comp': 'warn',
   },

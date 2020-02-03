@@ -7,7 +7,8 @@ export enum Env {
 }
 
 export const getUri = (): string => {
-  const ENV = process.env.NODE_ENV === 'development' ? Env.Development : Env.Production;
+  const ENV =
+    process.env.NODE_ENV === 'development' ? Env.Development : Env.Production;
   switch (ENV) {
     case Env.Development:
       return `http://localhost:${PORT}/${projectID}/us-central1/api`;
