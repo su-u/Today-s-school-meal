@@ -1,5 +1,5 @@
 import React from 'react';
-// import { getUri } from '@/utilities/ApiUri';
+import { getUri } from '@/utilities/ApiUri';
 
 const App = () => {
   return (
