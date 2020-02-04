@@ -7,28 +7,38 @@ const pageList: string[] = [
 ];
 
 export const main = async () => {
-  try {
-    pageList.map(async x => {
-      xpathList.map(async y => {
-        const browser = await puppeteer
-          .launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-          })
-          .catch(e => {
-            throw e;
-          });
-        const page = await browser.newPage();
-        await page.goto(x);
-        await page.waitForXPath(`/html/body/text()[${y}]`);
-        const elems = await page.$x(`/html/body/text()[${y}]`);
-        const jsHandle = await elems[0].getProperty('textContent');
-        const text = await jsHandle.jsonValue();
-        await console.log(text);
-        browser.close();
-      });
+  let funcList: Function[] = [];
+  pageList.map(async x => {
+    xpathList.map(async y => {
+      funcList.push(getContents(x, y));
     });
+  });
+  try {
+    await Promise.all(funcList).catch(e => console.log(e));
   } catch (e) {
     throw e.message;
   } finally {
   }
+};
+
+const getContents = (url: string, path: number) => {
+  const f = async () => {
+    const xpath = `/html/body/text()[${path}]`;
+    const browser = await puppeteer
+      .launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      })
+      .catch(e => {
+        throw e;
+      });
+    const page = await browser.newPage();
+    await page.goto(url);
+    await page.waitForXPath(xpath);
+    const elems = await page.$x(xpath);
+    const jsHandle = await elems[0].getProperty('textContent');
+    const text = await jsHandle.jsonValue();
+    browser.close();
+    return text;
+  };
+  return f;
 };
