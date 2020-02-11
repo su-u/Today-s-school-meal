@@ -10,7 +10,7 @@ const pageList: [string, string][] = [
   ['金曜日', 'https://www.cit-s.com/mobile/tsuda_d/5-fri.html'],
   ['土曜日', 'https://www.cit-s.com/mobile/tsuda_d/6-sat.html'],
 ];
-const xpathList: number[] = [8, 11, 14];
+const xpathList: number[] = [8, 11, 14, 15, 18, 21];
 
 export const main = async () => {
   try {
@@ -31,12 +31,11 @@ export const main = async () => {
             const elems = await page.$x(`/html/body/text()[${y}]`);
             const jsHandle = await elems[0].getProperty('textContent');
             const text = await jsHandle.jsonValue();
-            // await console.log(text);
+            await console.log(text);
             await browser.close();
             return text.trim();
           }),
         ]);
-
         const dateMeal: schoolMeal = {
           date: '',
           launchA: await date[0],
