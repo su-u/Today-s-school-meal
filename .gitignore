@@ -483,3 +483,4 @@ MigrationBackup/
 
 coverage/*
 dist/*
+api/src/firebase/config.ts
